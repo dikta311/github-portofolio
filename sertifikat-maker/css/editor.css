@@ -1,0 +1,186 @@
+/* ==========================================================================
+   EDITOR — toolbar, sidebar, panggung sertifikat, elemen drag
+   ========================================================================== */
+.editor-body{ height:100vh; overflow:hidden; display:flex; flex-direction:column; }
+
+/* ---------- Toolbar ---------- */
+.editor-toolbar{
+  height:var(--toolbar-h); flex-shrink:0; display:flex; align-items:center; justify-content:space-between;
+  padding:0 var(--sp-5); background:var(--surface-panel); border-bottom:1px solid var(--surface-border); gap:var(--sp-4);
+  z-index:50;
+}
+.toolbar-group{ display:flex; align-items:center; gap:8px; }
+.toolbar-divider{ width:1px; height:26px; background:var(--surface-border); margin:0 6px; }
+.toolbar-brand{ display:flex; align-items:center; gap:8px; font-family:var(--font-display); font-weight:700; font-size:var(--fs-base); }
+.toolbar-brand .brand-seal{ width:24px; height:24px; }
+.tpl-name-tag{ font-size:var(--fs-xs); color:var(--text-secondary); background:var(--surface-sunken); padding:5px 12px; border-radius:var(--radius-pill); }
+.autosave-indicator{ font-size:var(--fs-xs); color:var(--text-secondary); display:flex; align-items:center; gap:6px; }
+.autosave-dot{ width:6px; height:6px; border-radius:50%; background:var(--color-sage-500); }
+
+/* ---------- Layout utama ---------- */
+.editor-main{ flex:1; display:flex; min-height:0; }
+
+/* ---------- Sidebar ---------- */
+.editor-sidebar{
+  width:var(--sidebar-w); flex-shrink:0; background:var(--surface-panel);
+  border-right:1px solid var(--surface-border); overflow-y:auto; padding:var(--sp-5);
+}
+.sidebar-tabs{ display:flex; gap:4px; background:var(--surface-sunken); padding:4px; border-radius:var(--radius-md); margin-bottom:var(--sp-5); }
+.sidebar-tab{
+  flex:1; text-align:center; padding:9px 4px; border-radius:8px; font-size:var(--fs-xs); font-weight:600;
+  color:var(--text-secondary); transition:all var(--dur-fast) var(--ease-out);
+}
+.sidebar-tab.active{ background:var(--surface-panel); color:var(--text-primary); box-shadow:var(--shadow-sm); }
+
+.sidebar-panel{ display:none; animation:panel-in var(--dur-fast) var(--ease-out); }
+.sidebar-panel.active{ display:block; }
+@keyframes panel-in{ from{ opacity:0; transform:translateY(4px);} to{ opacity:1; transform:translateY(0);} }
+
+.field-group{ margin-bottom:var(--sp-6); }
+.field-group-title{
+  font-size:var(--fs-xs); text-transform:uppercase; letter-spacing:.07em; color:var(--text-secondary);
+  margin-bottom:var(--sp-3); display:flex; align-items:center; gap:6px; font-weight:700;
+}
+.field{ margin-bottom:var(--sp-4); }
+.field label{ display:block; font-size:var(--fs-xs); font-weight:600; margin-bottom:6px; color:var(--text-secondary); }
+.field input[type="text"], .field input[type="number"], .field textarea, .field select{
+  width:100%; padding:10px 12px; border-radius:var(--radius-sm); border:1px solid var(--surface-border);
+  background:var(--surface-sunken); color:var(--text-primary); font-size:var(--fs-sm);
+  transition:border-color var(--dur-fast);
+}
+.field input:focus, .field textarea:focus, .field select:focus{ border-color:var(--accent); outline:none; }
+.field textarea{ resize:vertical; min-height:64px; font-family:var(--font-body); }
+.field-row{ display:flex; gap:10px; }
+.field-row .field{ flex:1; }
+
+/* Slider kustom */
+.range-field{ display:flex; align-items:center; gap:10px; }
+.range-field input[type="range"]{ flex:1; accent-color:var(--accent); }
+.range-value{ font-family:var(--font-mono); font-size:var(--fs-xs); width:38px; text-align:right; color:var(--text-secondary); }
+
+/* Swatch warna */
+.color-row{ display:flex; align-items:center; gap:10px; }
+.color-row input[type="color"]{
+  width:38px; height:38px; border-radius:var(--radius-sm); border:1px solid var(--surface-border);
+  padding:0; background:none; cursor:pointer;
+}
+.color-presets{ display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
+.color-swatch{ width:22px; height:22px; border-radius:50%; border:2px solid var(--surface-panel); box-shadow:0 0 0 1px var(--surface-border); cursor:pointer; }
+.color-swatch.selected{ box-shadow:0 0 0 2px var(--accent); }
+
+/* Pilihan alignment tombol grup */
+.btn-toggle-group{ display:flex; border:1px solid var(--surface-border); border-radius:var(--radius-sm); overflow:hidden; }
+.btn-toggle-group button{
+  flex:1; padding:8px 6px; font-size:var(--fs-xs); color:var(--text-secondary); background:var(--surface-sunken);
+  border-right:1px solid var(--surface-border);
+}
+.btn-toggle-group button:last-child{ border-right:none; }
+.btn-toggle-group button.active{ background:var(--accent); color:#101a2e; font-weight:700; }
+
+/* Upload dropzone */
+.upload-zone{
+  border:1.5px dashed var(--surface-border); border-radius:var(--radius-md); padding:var(--sp-5);
+  text-align:center; cursor:pointer; transition:all var(--dur-fast); position:relative;
+}
+.upload-zone:hover, .upload-zone.dragover{ border-color:var(--accent); background:color-mix(in srgb, var(--accent) 8%, transparent); }
+.upload-zone svg{ width:22px; height:22px; margin:0 auto 8px; color:var(--text-secondary); }
+.upload-zone p{ font-size:var(--fs-xs); color:var(--text-secondary); }
+.upload-zone input[type="file"]{ position:absolute; inset:0; opacity:0; cursor:pointer; }
+.upload-preview{ display:flex; align-items:center; gap:10px; margin-top:10px; padding:8px; background:var(--surface-sunken); border-radius:var(--radius-sm); }
+.upload-preview img{ width:36px; height:36px; object-fit:contain; border-radius:4px; background:#fff; }
+.upload-preview span{ flex:1; font-size:var(--fs-xs); color:var(--text-secondary); }
+
+/* Template mini switcher di sidebar */
+.tpl-mini-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+.tpl-mini{ aspect-ratio:1.3/1; border-radius:8px; border:2px solid var(--surface-border); cursor:pointer; position:relative; overflow:hidden; }
+.tpl-mini.selected{ border-color:var(--accent); }
+.tpl-mini span{ position:absolute; bottom:2px; left:0; right:0; font-size:8px; text-align:center; color:inherit; }
+
+/* Reset posisi */
+.reset-positions-btn{ width:100%; margin-top:4px; }
+
+/* ---------- Panggung / canvas area ---------- */
+.editor-canvas-area{
+  flex:1; overflow:auto; display:flex; align-items:center; justify-content:center; padding:var(--sp-10);
+  background:
+    linear-gradient(var(--surface-sunken) 1px, transparent 1px) 0 0/24px 24px,
+    linear-gradient(90deg, var(--surface-sunken) 1px, transparent 1px) 0 0/24px 24px,
+    var(--surface-bg);
+}
+
+.stage-wrap{ position:relative; flex-shrink:0; }
+#certificate-stage{
+  width:1123px; height:794px; position:relative; background:#fff; overflow:hidden;
+  box-shadow:var(--shadow-lg); transform-origin:top left;
+  transition:box-shadow var(--dur-fast);
+}
+.stage-zoom-info{
+  position:absolute; bottom:-34px; left:50%; transform:translateX(-50%);
+  font-size:var(--fs-xs); color:var(--text-secondary); font-family:var(--font-mono); white-space:nowrap;
+}
+
+/* Elemen draggable di dalam sertifikat */
+.cert-el{
+  position:absolute; transform:translate(-50%,-50%); cursor:grab; padding:6px 10px;
+  white-space:pre-wrap; word-break:break-word; user-select:none; outline:none; border-radius:4px;
+  transition:box-shadow var(--dur-fast);
+  max-width:90%;
+}
+.cert-el:hover{ box-shadow:0 0 0 1px color-mix(in srgb, var(--accent) 60%, transparent); }
+.cert-el.selected{ box-shadow:0 0 0 2px var(--accent); cursor:grabbing; }
+.cert-el.dragging{ cursor:grabbing; opacity:.92; }
+.cert-el[contenteditable="true"]:focus{ box-shadow:0 0 0 2px var(--accent); background:rgba(255,255,255,.5); }
+.cert-el.el-image{ padding:0; }
+.cert-el.el-image img{ pointer-events:none; }
+
+.cert-el .el-handle-hint{ display:none; }
+
+/* Saat mengekspor: sembunyikan seluruh indikator seleksi/hover agar hasil bersih */
+#certificate-stage.exporting .cert-el{ box-shadow:none !important; background:transparent !important; }
+#certificate-stage.exporting .cert-el.selected{ box-shadow:none !important; }
+
+/* ---------- Panel kanan mengambang: layer list kecil (opsional ringkas) ---------- */
+.zoom-controls{
+  position:fixed; right:var(--sp-6); bottom:var(--sp-6); z-index:40;
+  display:flex; flex-direction:column; gap:6px; background:var(--surface-panel);
+  border:1px solid var(--surface-border); border-radius:var(--radius-md); padding:6px; box-shadow:var(--shadow-md);
+}
+
+/* ---------- Export overlay ---------- */
+.export-overlay{
+  position:fixed; inset:0; background:rgba(16,26,46,.55); backdrop-filter:blur(3px);
+  display:flex; align-items:center; justify-content:center; z-index:200;
+  opacity:0; pointer-events:none; transition:opacity var(--dur-med) var(--ease-out);
+}
+.export-overlay.show{ opacity:1; pointer-events:all; }
+.export-card{
+  background:var(--surface-panel); padding:var(--sp-10); border-radius:var(--radius-lg);
+  text-align:center; box-shadow:var(--shadow-lg); max-width:320px;
+}
+.export-card .spinner{ width:32px; height:32px; border-width:3px; border-color:var(--surface-border); border-top-color:var(--accent); margin:0 auto var(--sp-4); }
+.export-card h4{ font-size:var(--fs-md); margin-bottom:6px; }
+.export-card p{ font-size:var(--fs-sm); color:var(--text-secondary); }
+
+/* ---------- Modal umum ---------- */
+.modal-overlay{
+  position:fixed; inset:0; background:rgba(16,26,46,.5); display:flex; align-items:center; justify-content:center;
+  z-index:300; opacity:0; pointer-events:none; transition:opacity var(--dur-med) var(--ease-out);
+}
+.modal-overlay.show{ opacity:1; pointer-events:all; }
+.modal-box{
+  background:var(--surface-panel); border-radius:var(--radius-lg); padding:var(--sp-8); max-width:420px; width:92%;
+  box-shadow:var(--shadow-lg); transform:translateY(10px) scale(.98); transition:transform var(--dur-med) var(--ease-out);
+}
+.modal-overlay.show .modal-box{ transform:translateY(0) scale(1); }
+.modal-box h3{ font-size:var(--fs-lg); margin-bottom:10px; }
+.modal-box p{ font-size:var(--fs-sm); color:var(--text-secondary); margin-bottom:var(--sp-6); line-height:1.55; }
+.modal-actions{ display:flex; gap:10px; justify-content:flex-end; }
+
+/* ---------- Empty helper text di stage saat elemen dipilih ---------- */
+.selection-toolbar{
+  position:absolute; top:-44px; left:50%; transform:translateX(-50%);
+  display:flex; gap:4px; background:var(--color-ink-900); padding:5px; border-radius:var(--radius-sm);
+  box-shadow:var(--shadow-md); z-index:10;
+}
+.selection-toolbar button{ color:#fdfbf5; padding:6px 8px; border-radius:4px; font-size:var(--fs-xs); }
+.selection-toolbar button:hover{ background:rgba(255,255,255,.12); }

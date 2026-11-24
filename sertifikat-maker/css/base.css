@@ -1,0 +1,121 @@
+/* ==========================================================================
+   BASE — reset, tipografi global, komponen bersama (tombol, badge, dsb.)
+   ========================================================================== */
+*,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; }
+body{
+  font-family:var(--font-body);
+  background:var(--surface-bg);
+  color:var(--text-primary);
+  -webkit-font-smoothing:antialiased;
+  transition:background var(--dur-med) var(--ease-out), color var(--dur-med) var(--ease-out);
+  min-height:100vh;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+button, input, select, textarea{ font:inherit; color:inherit; }
+button{ cursor:pointer; border:none; background:none; }
+ul{ list-style:none; }
+h1,h2,h3,h4{ font-family:var(--font-display); font-weight:700; line-height:1.15; letter-spacing:-.01em; }
+:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+
+.container{ max-width:var(--max-content); margin:0 auto; padding:0 var(--sp-6); }
+.eyebrow{
+  display:inline-flex; align-items:center; gap:var(--sp-2);
+  font-family:var(--font-mono); font-size:var(--fs-xs); letter-spacing:.12em;
+  text-transform:uppercase; color:var(--accent-strong);
+}
+.eyebrow::before{ content:''; width:18px; height:1px; background:var(--accent); }
+
+/* ---------- Tombol ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:var(--sp-2);
+  padding:14px 28px; border-radius:var(--radius-pill);
+  font-weight:600; font-size:var(--fs-sm); letter-spacing:.01em;
+  transition:transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
+  white-space:nowrap;
+}
+.btn:active{ transform:translateY(1px) scale(.98); }
+.btn-primary{
+  background:linear-gradient(135deg,var(--color-gold-400),var(--color-gold-600));
+  color:var(--color-ink-900);
+  box-shadow:var(--shadow-gold);
+}
+.btn-primary:hover{ transform:translateY(-2px); box-shadow:0 14px 32px rgba(201,162,39,.36); }
+.btn-secondary{
+  background:transparent; color:var(--text-primary);
+  border:1.5px solid var(--surface-border);
+}
+.btn-secondary:hover{ border-color:var(--accent); color:var(--accent-strong); }
+.btn-ghost{ color:var(--text-secondary); padding:10px 16px; }
+.btn-ghost:hover{ color:var(--text-primary); }
+.btn-sm{ padding:9px 16px; font-size:var(--fs-xs); }
+.btn-icon{
+  width:40px; height:40px; padding:0; border-radius:var(--radius-md);
+  display:inline-flex; align-items:center; justify-content:center;
+  background:var(--surface-sunken); color:var(--text-secondary);
+}
+.btn-icon:hover{ color:var(--text-primary); background:var(--surface-border); }
+.btn-icon svg{ width:18px; height:18px; }
+
+.btn[disabled]{ opacity:.5; pointer-events:none; }
+
+/* ---------- Badge / chip ---------- */
+.badge{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:5px 12px; border-radius:var(--radius-pill);
+  font-size:var(--fs-xs); font-weight:600; background:var(--surface-sunken);
+  color:var(--text-secondary);
+}
+
+/* ---------- Theme toggle ---------- */
+.theme-toggle{
+  position:relative; width:52px; height:30px; border-radius:var(--radius-pill);
+  background:var(--surface-sunken); border:1px solid var(--surface-border);
+  flex-shrink:0;
+}
+.theme-toggle::after{
+  content:''; position:absolute; top:3px; left:3px; width:22px; height:22px;
+  border-radius:50%; background:linear-gradient(135deg,var(--color-gold-400),var(--color-gold-600));
+  transition:transform var(--dur-med) var(--ease-out);
+}
+[data-theme="dark"] .theme-toggle::after{ transform:translateX(22px); }
+
+/* ---------- Scrollbar tipis ---------- */
+::-webkit-scrollbar{ width:8px; height:8px; }
+::-webkit-scrollbar-thumb{ background:var(--surface-border); border-radius:4px; }
+::-webkit-scrollbar-track{ background:transparent; }
+
+/* ---------- Skip link (aksesibilitas) ---------- */
+.skip-link{
+  position:absolute; left:-999px; top:0; background:var(--color-ink-800); color:#fff;
+  padding:10px 16px; z-index:999; border-radius:0 0 8px 0;
+}
+.skip-link:focus{ left:0; }
+
+/* ---------- Toast notifikasi ---------- */
+#toast-region{
+  position:fixed; bottom:24px; left:50%; transform:translateX(-50%);
+  z-index:999; display:flex; flex-direction:column; gap:8px; align-items:center;
+}
+.toast{
+  background:var(--color-ink-800); color:#fdfbf5; padding:12px 20px;
+  border-radius:var(--radius-md); font-size:var(--fs-sm); box-shadow:var(--shadow-lg);
+  display:flex; align-items:center; gap:8px;
+  animation:toast-in var(--dur-med) var(--ease-out);
+}
+.toast.toast-error{ background:var(--color-danger); }
+.toast.toast-success{ background:var(--color-sage-500); }
+@keyframes toast-in{ from{ opacity:0; transform:translateY(12px);} to{ opacity:1; transform:translateY(0);} }
+
+/* ---------- Loader ringan ---------- */
+.spinner{
+  width:16px; height:16px; border-radius:50%;
+  border:2px solid rgba(255,255,255,.35); border-top-color:#fff;
+  animation:spin .7s linear infinite;
+}
+@keyframes spin{ to{ transform:rotate(360deg); } }
+
+.visually-hidden{
+  position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;
+}

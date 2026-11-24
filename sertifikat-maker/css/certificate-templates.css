@@ -1,0 +1,76 @@
+/* ==========================================================================
+   GAYA VISUAL TEMPLATE SERTIFIKAT (dipakai di panggung editor & saat ekspor)
+   ========================================================================== */
+#certificate-stage{ font-family:'Inter', sans-serif; }
+.cert-decor{ position:absolute; inset:0; pointer-events:none; }
+
+/* ---------- MODERN ---------- */
+.stage-modern{ background:linear-gradient(135deg,#101a2e,#1b2a4a); }
+.stage-modern .cert-decor::before{
+  content:''; position:absolute; width:46%; aspect-ratio:1; border-radius:50%; top:-16%; right:-10%;
+  background:radial-gradient(circle, rgba(217,183,74,.35), transparent 70%);
+}
+.stage-modern .cert-decor::after{
+  content:''; position:absolute; left:0; top:0; bottom:0; width:6px; background:linear-gradient(180deg,#d9b74a,#a9822a);
+}
+.stage-modern .cert-decor .modern-line{
+  position:absolute; left:16%; top:24%; width:30%; height:2px; background:#d9b74a;
+}
+
+/* ---------- ELEGANT ---------- */
+.stage-elegant{ background:#fffaf0; }
+.stage-elegant .cert-decor .corner{
+  position:absolute; width:70px; height:70px; border:2px solid #c9a227;
+}
+.stage-elegant .cert-decor .corner.tl{ top:34px; left:34px; border-right:none; border-bottom:none; }
+.stage-elegant .cert-decor .corner.tr{ top:34px; right:34px; border-left:none; border-bottom:none; }
+.stage-elegant .cert-decor .corner.bl{ bottom:34px; left:34px; border-right:none; border-top:none; }
+.stage-elegant .cert-decor .corner.br{ bottom:34px; right:34px; border-left:none; border-top:none; }
+
+/* ---------- CORPORATE ---------- */
+.stage-corporate{ background:#ffffff; }
+.stage-corporate .cert-decor::before{
+  content:''; position:absolute; left:0; top:0; bottom:0; width:13%; background:#1b2a4a;
+}
+.stage-corporate .cert-decor::after{
+  content:''; position:absolute; left:13%; top:0; bottom:0; width:5px; background:#2c5f8a;
+}
+.stage-corporate .cert-decor .corp-tag{
+  position:absolute; left:4.5%; bottom:8%; writing-mode:vertical-rl; color:#8fb3d6; font-family:'JetBrains Mono',monospace;
+  font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+}
+
+/* ---------- MINIMALIST ---------- */
+.stage-minimalist{ background:#ffffff; }
+.stage-minimalist .cert-decor .min-rule{
+  position:absolute; left:50%; top:20%; width:1px; height:60%; background:#e5e0d3; transform:translateX(-50%);
+  display:none; /* garis vertikal opsional dimatikan agar tetap bersih */
+}
+.stage-minimalist .cert-decor .min-topline{
+  position:absolute; left:50%; top:9%; width:80px; height:2px; background:#201f1d; transform:translateX(-50%);
+}
+
+/* ---------- ACADEMIC ---------- */
+.stage-academic{ background:#faf6ec; }
+.stage-academic .cert-decor .laurel{
+  position:absolute; bottom:6%; left:50%; transform:translateX(-50%); width:64px; height:64px; opacity:.85;
+}
+.stage-academic .cert-decor .academic-topband{
+  position:absolute; top:0; left:0; right:0; height:10px; background:repeating-linear-gradient(90deg,#4c6444 0 14px,#faf6ec 14px 28px);
+}
+
+/* ---------- VINTAGE (contoh template baru) ---------- */
+.stage-vintage{ background:#f2e6cf; }
+.stage-vintage .cert-decor::before{
+  content:''; position:absolute; inset:14px; border:1px solid #8a5a2b; pointer-events:none;
+}
+.stage-vintage .cert-decor .vintage-stamp{
+  position:absolute; right:9%; bottom:9%; width:80px; height:80px; border-radius:50%;
+  border:3px double #8a5a2b; opacity:.7;
+}
+
+/* ---------- Border kustom generik (ditambahkan lewat inline style oleh JS) ---------- */
+.cert-border-solid{ box-shadow:inset 0 0 0 var(--bw,3px) var(--bc,#000); }
+.cert-border-double{ box-shadow:inset 0 0 0 var(--bw,10px) var(--bc,#000), inset 0 0 0 calc(var(--bw,10px) + 6px) transparent, inset 0 0 0 calc(var(--bw,10px) + 8px) var(--bc,#000); }
+.cert-border-thin{ box-shadow:inset 0 0 0 var(--bw,1px) var(--bc,#000); }
+.cert-border-none{ box-shadow:none; }

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editor Sertifikat — Sertifikat Maker</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,600&family=Montserrat:wght@400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/editor.css">
+<link rel="stylesheet" href="css/templates-page.css">
+<link rel="stylesheet" href="css/certificate-templates.css">
+<link rel="stylesheet" href="css/dark-mode.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="editor-body">
+
+<!-- ================= TOOLBAR ================= -->
+<header class="editor-toolbar">
+  <div class="toolbar-group">
+    <a href="templates.html" class="btn-icon" title="Kembali ke pilihan template" aria-label="Kembali">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg>
+    </a>
+    <div class="toolbar-brand"><span class="brand-text">Sertifikat Maker</span></div>
+    <span class="tpl-name-tag" id="tpl-name-tag">Template: Modern</span>
+  </div>
+
+  <div class="toolbar-group">
+    <button class="btn-icon" id="btn-undo" title="Urungkan (Ctrl+Z)" aria-label="Urungkan">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 14L4 9l5-5M4 9h11a5 5 0 015 5v1"/></svg>
+    </button>
+    <button class="btn-icon" id="btn-redo" title="Ulangi (Ctrl+Y)" aria-label="Ulangi">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 14l5-5-5-5M20 9H9a5 5 0 00-5 5v1"/></svg>
+    </button>
+    <div class="toolbar-divider"></div>
+    <button class="btn-icon" id="btn-reset-positions" title="Reset posisi elemen" aria-label="Reset posisi">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 12a9 9 0 109-9 9.75 9.75 0 00-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+    </button>
+    <span class="autosave-indicator"><span class="autosave-dot"></span><span id="autosave-text">Tersimpan</span></span>
+  </div>
+
+  <div class="toolbar-group">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Ganti mode gelap/terang" aria-pressed="false"></button>
+    <div class="toolbar-divider"></div>
+    <button class="btn btn-secondary btn-sm" id="btn-download-png">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+      PNG
+    </button>
+    <button class="btn btn-primary btn-sm" id="btn-download-pdf">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+      PDF
+    </button>
+  </div>
+</header>
+
+<!-- ================= LAYOUT UTAMA ================= -->
+<div class="editor-main">
+
+  <!-- ---------- SIDEBAR ---------- -->
+  <aside class="editor-sidebar">
+    <div class="sidebar-tabs" role="tablist">
+      <button class="sidebar-tab active" data-tab="konten">Konten</button>
+      <button class="sidebar-tab" data-tab="gaya">Gaya</button>
+      <button class="sidebar-tab" data-tab="template">Template</button>
+    </div>
+
+    <!-- ===== TAB: KONTEN ===== -->
+    <section class="sidebar-panel active" data-panel="konten">
+      <div class="field-group">
+        <div class="field-group-title">Informasi Utama</div>
+        <div class="field">
+          <label for="inp-title">Judul Sertifikat</label>
+          <input type="text" id="inp-title" maxlength="80">
+        </div>
+        <div class="field">
+          <label for="inp-recipientName">Nama Penerima</label>
+          <input type="text" id="inp-recipientName" maxlength="60">
+        </div>
+        <div class="field">
+          <label for="inp-description">Deskripsi</label>
+          <textarea id="inp-description" maxlength="220"></textarea>
+        </div>
+        <div class="field">
+          <label for="inp-certNumber">Nomor Sertifikat</label>
+          <input type="text" id="inp-certNumber" maxlength="50">
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-group-title">Penyelenggara &amp; Tanggal</div>
+        <div class="field">
+          <label for="inp-organizer">Nama Penyelenggara</label>
+          <input type="text" id="inp-organizer" maxlength="60">
+        </div>
+        <div class="field">
+          <label for="inp-date">Tanggal</label>
+          <input type="text" id="inp-date" maxlength="40">
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-group-title">Penandatangan</div>
+        <div class="field">
+          <label for="inp-signerName">Nama Penandatangan</label>
+          <input type="text" id="inp-signerName" maxlength="50">
+        </div>
+        <div class="field">
+          <label for="inp-signerTitle">Jabatan Penandatangan</label>
+          <input type="text" id="inp-signerTitle" maxlength="50">
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-group-title">Logo</div>
+        <div class="upload-zone" id="zone-logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+          <p>Klik atau seret gambar logo ke sini</p>
+          <input type="file" id="inp-logo" accept="image/png,image/jpeg,image/svg+xml,image/webp">
+        </div>
+        <div class="upload-preview" id="preview-logo" hidden>
+          <img id="preview-logo-img" alt="Pratinjau logo">
+          <span>Logo terpasang</span>
+          <button class="btn-icon btn-sm" id="btn-remove-logo" aria-label="Hapus logo" title="Hapus logo">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-group-title">Tanda Tangan</div>
+        <div class="upload-zone" id="zone-signature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6 3 5-14 4 11 3-6"/></svg>
+          <p>Klik atau seret gambar tanda tangan</p>
+          <input type="file" id="inp-signature" accept="image/png,image/jpeg,image/svg+xml,image/webp">
+        </div>
+        <div class="upload-preview" id="preview-signature" hidden>
+          <img id="preview-signature-img" alt="Pratinjau tanda tangan">
+          <span>Tanda tangan terpasang</span>
+          <button class="btn-icon btn-sm" id="btn-remove-signature" aria-label="Hapus tanda tangan" title="Hapus tanda tangan">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TAB: GAYA ===== -->
+    <section class="sidebar-panel" data-panel="gaya">
+      <div class="field-group">
+        <div class="field-group-title">Elemen Terpilih</div>
+        <p id="selected-el-label" style="font-size:var(--fs-xs); color:var(--text-secondary); margin-bottom:10px;">Klik salah satu teks pada sertifikat untuk mengatur gaya spesifiknya, atau atur gaya global di bawah.</p>
+      </div>
+
+      <div class="field-group">
+        <div class="field-group-title">Tipografi</div>
+        <div class="field">
+          <label for="sel-font">Font</label>
+          <select id="sel-font">
+            <option value="'Playfair Display', serif">Playfair Display</option>
+            <option value="'Cormorant Garamond', serif">Cormorant Garamond</option>
+            <option value="'Merriweather', serif">Merriweather</option>
+            <option value="'Inter', sans-serif">Inter</option>
+            <option value="'Montserrat', sans-serif">Montserrat</option>
+            <option value="'JetBrains Mono', monospace">JetBrains Mono</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="rng-fontsize">Ukuran Font (elemen terpilih)</label>
+          <div class="range-field">
+            <input type="range" id="rng-fontsize" min="8" max="90" step="1">
+            <span class="range-value" id="rng-fontsize-val">—</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Perataan Teks</label>
+          <div class="btn-toggle-group" id="align-group">
+            <button data-align="left">Kiri</button>
+            <button data-align="center">Tengah</button>
+            <button data-align="right">Kanan</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-group-title">Warna</div>
+        <div class="field">
+          <label for="col-text">Warna Teks</label>
+          <div class="color-row">
+            <input type="color" id="col-text">
+            <div class="color-presets" id="preset-text"></div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="col-accent">Warna Aksen / Bingkai</label>
+          <div class="color-row">
+            <input type="color" id="col-accent">
+            <div class="color-presets" id="preset-accent"></div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="col-bg">Warna Latar</label>
+          <div class="color-row">
+            <input type="color" id="col-bg">
+            <div class="color-presets" id="preset-bg"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-group-title">Bingkai</div>
+        <div class="field">
+          <label for="sel-border-style">Gaya Bingkai</label>
+          <select id="sel-border-style">
+            <option value="none">Tanpa bingkai</option>
+            <option value="thin">Garis tipis</option>
+            <option value="solid">Solid tebal</option>
+            <option value="double">Garis ganda</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="rng-borderwidth">Ketebalan Bingkai</label>
+          <div class="range-field">
+            <input type="range" id="rng-borderwidth" min="1" max="24" step="1">
+            <span class="range-value" id="rng-borderwidth-val">—</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-secondary reset-positions-btn" id="btn-reset-positions-2">Reset semua posisi elemen</button>
+    </section>
+
+    <!-- ===== TAB: TEMPLATE ===== -->
+    <section class="sidebar-panel" data-panel="template">
+      <div class="field-group">
+        <div class="field-group-title">Ganti Template</div>
+        <p style="font-size:var(--fs-xs); color:var(--text-secondary); margin-bottom:12px;">Isi teks yang sudah Anda tulis akan tetap dipakai — hanya gaya &amp; tata letak yang berubah.</p>
+        <div class="tpl-mini-grid" id="tpl-mini-grid"><!-- diisi oleh editor-controls.js --></div>
+      </div>
+    </section>
+  </aside>
+
+  <!-- ---------- PANGGUNG SERTIFIKAT ---------- -->
+  <section class="editor-canvas-area" id="canvas-area">
+    <div class="stage-wrap">
+      <div id="certificate-stage" class="stage-modern">
+        <div class="cert-inset-border" id="cert-inset-border"></div>
+        <div class="cert-decor" id="cert-decor"></div>
+        <!-- elemen teks & gambar disuntik oleh editor-render.js -->
+      </div>
+      <div class="stage-zoom-info" id="stage-zoom-info">Ukuran cetak: A4 Landscape · Ekspor 300 DPI</div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= OVERLAY EKSPOR ================= -->
+<div class="export-overlay" id="export-overlay">
+  <div class="export-card">
+    <div class="spinner"></div>
+    <h4 id="export-title">Menyiapkan berkas...</h4>
+    <p id="export-desc">Mohon tunggu sebentar, sedang merender sertifikat kualitas tinggi.</p>
+  </div>
+</div>
+
+<!-- ================= MODAL KONFIRMASI RESET ================= -->
+<div class="modal-overlay" id="modal-reset">
+  <div class="modal-box">
+    <h3>Reset posisi elemen?</h3>
+    <p>Semua elemen akan dikembalikan ke posisi bawaan template ini. Isi teks tidak akan berubah.</p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="modal-reset-cancel">Batal</button>
+      <button class="btn btn-primary" id="modal-reset-confirm">Ya, Reset</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast-region" aria-live="polite"></div>
+
+<!-- Library eksternal (dimuat dari CDN untuk fitur ekspor PNG/PDF berkualitas tinggi) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script src="js/utils.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/templates-data.js"></script>
+<script src="js/editor-state.js"></script>
+<script src="js/editor-render.js"></script>
+<script src="js/editor-dragdrop.js"></script>
+<script src="js/editor-controls.js"></script>
+<script src="js/editor-upload.js"></script>
+<script src="js/export.js"></script>
+<script src="js/editor-init.js"></script>
+</body>
+</html>

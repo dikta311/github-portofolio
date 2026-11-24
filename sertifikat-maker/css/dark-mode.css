@@ -1,0 +1,35 @@
+/* ==========================================================================
+   DARK MODE — penyesuaian tambahan di luar token warna
+   ========================================================================== */
+[data-theme="dark"] .hero::before{
+  background:
+    radial-gradient(600px 400px at 85% -10%, rgba(217,183,74,.14), transparent 70%),
+    radial-gradient(500px 350px at 5% 10%, rgba(74,91,130,.18), transparent 70%);
+}
+[data-theme="dark"] .mock-cert{
+  background:linear-gradient(180deg,#1a2340,#151d36);
+  border-color:#2c3a5c;
+}
+[data-theme="dark"] .mock-cert-inner h3{ color:#f2efe4; }
+[data-theme="dark"] .mock-cert-inner p{ color:#9aa3bd; }
+[data-theme="dark"] .mock-cert-inner .mc-eyebrow{ color:var(--color-gold-400); }
+
+[data-theme="dark"] .thumb-elegant,
+[data-theme="dark"] .thumb-corporate,
+[data-theme="dark"] .thumb-minimalist,
+[data-theme="dark"] .thumb-academic{ filter:brightness(.92) saturate(1.05); }
+
+[data-theme="dark"] .editor-canvas-area{
+  background:
+    linear-gradient(var(--surface-sunken) 1px, transparent 1px) 0 0/24px 24px,
+    linear-gradient(90deg, var(--surface-sunken) 1px, transparent 1px) 0 0/24px 24px,
+    var(--surface-bg);
+}
+[data-theme="dark"] #certificate-stage{ box-shadow:0 30px 70px rgba(0,0,0,.55); }
+
+[data-theme="dark"] .field input, [data-theme="dark"] .field textarea, [data-theme="dark"] .field select{
+  color:#f2efe4;
+}
+[data-theme="dark"] .upload-preview img{ background:#1c2745; }
+
+[data-theme="dark"] ::selection{ background:rgba(217,183,74,.35); }

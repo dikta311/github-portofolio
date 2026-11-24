@@ -1,0 +1,94 @@
+/* ==========================================================================
+   DESIGN TOKENS — Sertifikat Maker
+   Palet: tinta navy + emas seremonial, di atas kertas parchment.
+   ========================================================================== */
+:root{
+  /* --- Warna inti --- */
+  --color-ink-900:#101a2e;
+  --color-ink-800:#1b2a4a;
+  --color-ink-700:#28395f;
+  --color-ink-500:#4a5b82;
+  --color-parchment-100:#fbf8f1;
+  --color-parchment-200:#f7f3e8;
+  --color-parchment-300:#efe7d4;
+  --color-gold-500:#c9a227;
+  --color-gold-400:#d9b74a;
+  --color-gold-600:#a9822a;
+  --color-burgundy-600:#7a2e3b;
+  --color-sage-500:#4c6444;
+  --color-charcoal-900:#201f1d;
+  --color-white:#ffffff;
+  --color-danger:#b3432c;
+
+  /* --- Superficies UI (light mode) --- */
+  --surface-bg:var(--color-parchment-100);
+  --surface-panel:#ffffff;
+  --surface-sunken:#f1ede2;
+  --surface-border:#e3dcc9;
+  --text-primary:var(--color-charcoal-900);
+  --text-secondary:#5b5648;
+  --text-inverse:#fdfbf5;
+  --accent:var(--color-gold-500);
+  --accent-strong:var(--color-ink-800);
+
+  /* --- Tipografi --- */
+  --font-display:'Playfair Display', 'Georgia', serif;
+  --font-body:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:'JetBrains Mono', 'Courier New', monospace;
+
+  --fs-xs:.75rem;
+  --fs-sm:.875rem;
+  --fs-base:1rem;
+  --fs-md:1.125rem;
+  --fs-lg:1.375rem;
+  --fs-xl:1.75rem;
+  --fs-2xl:2.25rem;
+  --fs-3xl:3rem;
+  --fs-4xl:3.75rem;
+
+  /* --- Spacing (skala 4px) --- */
+  --sp-1:4px;  --sp-2:8px;  --sp-3:12px; --sp-4:16px;
+  --sp-5:20px; --sp-6:24px; --sp-8:32px; --sp-10:40px;
+  --sp-12:48px; --sp-16:64px; --sp-20:80px; --sp-24:96px;
+
+  /* --- Bentuk & bayangan --- */
+  --radius-sm:6px;
+  --radius-md:12px;
+  --radius-lg:20px;
+  --radius-pill:999px;
+  --shadow-sm:0 1px 2px rgba(16,26,46,.06);
+  --shadow-md:0 8px 24px rgba(16,26,46,.08);
+  --shadow-lg:0 20px 60px rgba(16,26,46,.16);
+  --shadow-gold:0 8px 24px rgba(201,162,39,.28);
+
+  /* --- Gerak --- */
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --dur-fast:150ms;
+  --dur-med:320ms;
+  --dur-slow:600ms;
+
+  /* --- Layout --- */
+  --header-h:72px;
+  --sidebar-w:340px;
+  --toolbar-h:64px;
+  --max-content:1200px;
+}
+
+/* ---------- Dark mode ---------- */
+[data-theme="dark"]{
+  --surface-bg:#0d1526;
+  --surface-panel:#141f38;
+  --surface-sunken:#0f1830;
+  --surface-border:#26314f;
+  --text-primary:#f2efe4;
+  --text-secondary:#a8b0c8;
+  --text-inverse:#101a2e;
+  --accent:var(--color-gold-400);
+  --accent-strong:var(--color-gold-400);
+  --shadow-md:0 8px 24px rgba(0,0,0,.35);
+  --shadow-lg:0 24px 64px rgba(0,0,0,.5);
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
+}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background-color: #171ace;
+      padding: 1rem;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0,8s;
+    }
+
+    nav a:hover {
+      color: #ffa500;
+      scale: 1.3;
+      
+    }
+
+
+        .riset-rahasia {
+  background: #ffffff;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.riset-rahasia h2 {
+  text-align: center;
+  font-size: 2.2em;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  scale: 1.3;
+}
+
+.rahasia-item {
+  background: white;
+  margin: 20px auto;
+  padding: 25px;
+  border-left: 8px solid #34495e;
+  border-radius: 16px;
+  max-width: 700px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.rahasia-item h3 {
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+
+.rahasia-item p {
+  color: #555;
+  line-height: 1.7em;
+}
+
+
+    /* Background layar rahasia */
+    #animasi-rahasia {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: black;
+      color: lime;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 9999;
+      animation: ilangin 3s ease forwards;
+      animation-delay: 2s;
+    }
+
+    @keyframes ilangin {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    .lingkaran {
+      width: 60px;
+      height: 60px;
+      border: 4px solid lime;
+      border-top: 4px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 10px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    #konten-rahasia {
+      padding: 20px;
+    }
+  </style>
+</head>
+
+    </style>
+</head>
+<body style="background-color: #f5ecec;">
+  <div id="animasi-rahasia">
+    <div class="lingkaran"></div>
+    <p>Mengakses Data Rahasia...</p> shuuuuuttttt
+  </div>
+
+  <div id="konten-rahasia">
+    <h1>DATA RAHASIA 🚨</h1>
+    <p>sebaik nya tutup mulut.</p>
+  </div>
+    <nav>
+        <a href="berita.html">Home</a>
+        <a href="ufo.html">UFO</a>
+        <a href="politik.html">Politik</a>
+        <a href="konspirasi.html">Riset Rahasia</a>
+      </nav>
+
+    <section class="riset-rahasia">
+        <h2>🕵️ Riset Rahasia</h2>
+      
+        <div class="rahasia-item">
+          <h3>🛰️ Operasi Langit Hitam</h3>
+          <p>
+            Dalam beberapa dekade terakhir, sejumlah astronom amatir melaporkan adanya satelit yang mengorbit tanpa identitas resmi. Satelit ini, dijuluki “Langit Hitam”, tidak terdaftar dalam katalog internasional. Peneliti dari lembaga luar angkasa independen menemukan pola orbit yang tidak biasa dan dugaan adanya transmisi sinyal frekuensi tinggi menuju daerah terpencil di Arktik.
+          </p>
+          <p><a href="koprasi langin.html">Baca selengkapnya</a></p>
+        </div>
+      
+        <div class="rahasia-item">
+          <h3>🛸 Arsip UFO yang Disembunyikan</h3>
+          <p>
+            Dokumen bocor dari arsip tahun 1998 menunjukkan bahwa lembaga antariksa tertentu pernah mencatat penampakan benda terbang aneh memasuki orbit Bumi. Objek tersebut tidak menunjukkan tanda-tanda propulsi konvensional dan menghilang secara misterius dari radar setelah 43 menit. Laporan tersebut tidak pernah dipublikasikan ke publik, hingga akhirnya dibongkar oleh komunitas whistleblower.
+          </p>
+          <p><a href="konspirasi 2.html">Baca selengkapnya</a></p>
+        </div>
+      
+        <div class="rahasia-item">
+          <h3>🧬 Proyek Genetik Alien-Bumi</h3>
+          <p>
+            Spekulasi mengenai eksperimen genetik antara spesies Bumi dan entitas luar angkasa mulai merebak setelah ditemukannya fragmen DNA aneh di sebuah lokasi yang diyakini sebagai tempat pendaratan UFO. Para ilmuwan independen menyebutnya “DNA Siluman” karena struktur heliksnya tidak bisa dicocokkan dengan makhluk hidup manapun di planet ini.
+          </p>
+        </div>
+      </section>
+      
+      
+</body>
+</html>
